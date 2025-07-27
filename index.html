@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MochaFolk - Digital Coffee Solutions</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script type="module" src="./main.js" defer></script>
+
+    <style>
+        /* Judul menggunakan Amatic SC */
+        h1, h2, h3, nav, .font-amatic { 
+            font-family: 'Amatic SC', cursive; 
+        }
+        /* CSS untuk font paragraf yang mudah dibaca */
+        .font-body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body { 
+            background-color: #111; 
+            color: #e5e7eb; 
+            overflow-x: hidden; 
+            letter-spacing: 1px;
+        }
+        #particle-canvas { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0;
+        }
+        .main-content-area {
+            position: relative;
+            z-index: 1;
+        }
+        .content-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+        }
+        .brand-accent-text { color: #A47E65; }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: linear-gradient(to bottom, rgba(17,17,17,0.7), rgba(17,17,17,0));
+            padding: 1.5rem;
+        }
+        .nav-link { 
+            position: relative; 
+            padding-bottom: 4px; 
+            transition: color 0.3s; 
+            font-weight: 700;
+        }
+        .nav-link::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 0; 
+            height: 1px; 
+            background-color: #A47E65; 
+            transition: width 0.3s; 
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link.active { color: #A47E65; }
+
+        .solution-card, .contact-link { 
+            border: 1px solid #52525b; 
+            background-color: rgba(20, 20, 20, 0.5); 
+            backdrop-filter: blur(8px); 
+            transition: all 0.3s ease; 
+        }
+        .solution-card:hover, .contact-link:hover { 
+            border-color: #A47E65; 
+            transform: translateY(-5px); 
+        }
+
+        #main-headline {
+            position: relative;
+            cursor: pointer;
+        }
+        #main-headline .highlight-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #A47E65;
+            -webkit-mask-image: radial-gradient(circle var(--spotlight-size, 0px) at var(--x, 50%) var(--y, 50%), black 20%, transparent 100%);
+            mask-image: radial-gradient(circle var(--spotlight-size, 0px) at var(--x, 50%) var(--y, 50%), black 20%, transparent 100%);
+            transition: -webkit-mask-size 0.2s ease-out, mask-size 0.2s ease-out;
+        }
+        #main-headline .highlight-text .invisible-text {
+            color: transparent;
+        }
+
+        /* --- CSS BARU UNTUK KARTU "COMING SOON" --- */
+        .solution-card.inactive {
+            opacity: 0.6;
+            pointer-events: none; /* Menonaktifkan efek hover */
+        }
+        .coming-soon-ribbon {
+            position: absolute;
+            top: 22px;
+            right: -45px;
+            transform: rotate(45deg);
+            padding: 4px 40px;
+            background-color: #A47E65; /* Warna aksen brand */
+            color: #111; /* Teks gelap agar kontras di atas pita */
+            font-weight: 700;
+            font-size: 1.5rem; /* Ukuran disesuaikan dengan font Amatic */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="main-content-area">
+        <header class="flex justify-between items-center">
+            <a href="#home">
+                <img src="images/logo3.png" alt="MochaFolk Logo" class="h-20 sm:h-24 w-auto">
+            </a>
+            <nav class="flex space-x-6 sm:space-x-8 text-2xl font-amatic">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </header>
+
+        <section id="home" class="content-section items-center justify-center text-center">
+            <div class="max-w-4xl pt-24">
+                <h1 id="main-headline" class="text-6xl sm:text-7xl md:text-8xl font-bold leading-none mb-6 font-amatic">
+                    <span>Crafting the Future of Your <span class="brand-accent-text">Coffee</span></span>
+                    <span class="highlight-text" aria-hidden="true">
+                        Crafting the Future of Your <span class="invisible-text">Coffee</span>
+                    </span>
+                </h1>
+                <p class="text-2xl sm:text-3xl text-gray-300 mb-12 font-amatic font-normal">
+                    Discover our integrated digital solutions, designed with simplicity and focus.
+                </p>
+                <a href="#solutions" class="inline-block bg-white/10 border border-white/20 backdrop-blur-lg text-white text-2xl font-bold py-3 px-8 rounded-lg hover:bg-white/20 transition-colors font-amatic">
+                    Explore Our Solutions
+                </a>
+            </div>
+        </section>
+
+        <section id="solutions" class="content-section items-center justify-center">
+            <div class="w-full max-w-4xl text-center">
+                <h2 class="text-6xl sm:text-7xl font-bold mb-12 font-amatic">Our Solutions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Kartu 1: Online Queue Pager (Aktif) -->
+                    <div class="solution-card p-8 rounded-lg text-left">
+                        <i data-lucide="smartphone" class="w-10 h-10 brand-accent-text mb-4"></i>
+                        <h3 class="font-bold text-4xl text-gray-200 mb-2 font-amatic">Online Queue Pager</h3>
+                        <p class="text-base text-gray-400 font-normal font-body tracking-normal">For the mindful customer. Order your coffee and get instant notifications when it's ready. No lines, no waiting, just a seamless experience.</p>
+                    </div>
+                    <!-- PERUBAHAN: Kartu 2: Roastery Inventory System (Coming Soon) -->
+                    <div class="solution-card inactive p-8 rounded-lg text-left relative overflow-hidden">
+                        <div class="coming-soon-ribbon font-amatic">Coming Soon</div>
+                        <i data-lucide="archive" class="w-10 h-10 brand-accent-text mb-4"></i>
+                        <h3 class="font-bold text-4xl text-gray-200 mb-2 font-amatic">Roastery Inventory System</h3>
+                        <p class="text-base text-gray-400 font-normal font-body tracking-normal">For the focused business owner. Manage your bean stock, track sales, and optimize operations with a smart, easy-to-use system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section items-center justify-center">
+            <div class="w-full max-w-md text-center">
+                <h2 class="text-6xl sm:text-7xl font-bold mb-4 font-amatic">Get In Touch</h2>
+                <p class="text-xl text-gray-400 mb-12 font-body tracking-normal">We'd love to hear from you. If you need solutions and ideas for your coffee shop, don't hesitate to contact us.</p>
+                <div class="space-y-4">
+                    <a href="https://www.instagram.com/mochaliffian/" target="_blank" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
+                        <i data-lucide="instagram" class="w-7 h-7 brand-accent-text"></i>
+                        <span class="text-3xl font-bold font-amatic">@mochaliffian</span>
+                    </a>
+                    <a href="https://wa.me/6282139025322" target="_blank" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
+                        <i data-lucide="message-circle" class="w-7 h-7 brand-accent-text"></i>
+                        <span class="text-3xl font-bold font-amatic">+62 821 3902 5322</span>
+                    </a>
+                    <a href="mailto:mochafolk@gmail.com" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
+                        <i data-lucide="mail" class="w-7 h-7 brand-accent-text"></i>
+                        <span class="text-3xl font-bold font-amatic">mochafolk@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
