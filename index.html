@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MochaFolk - Digital Coffee Solutions</title>
+    
+    <title>MochaFolk - Digital Solutions for Your Coffee Ritual</title>
+    <meta name="description" content="MochaFolk provides modern digital solutions for coffee shops, including online queue pagers and inventory management systems, crafting the future of your coffee experience.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -87,7 +89,7 @@
             border-color: #A47E65; 
             transform: translateY(-5px); 
         }
-
+        
         #main-headline {
             position: relative;
             cursor: pointer;
@@ -107,10 +109,9 @@
             color: transparent;
         }
 
-        /* --- CSS BARU UNTUK KARTU "COMING SOON" --- */
         .solution-card.inactive {
             opacity: 0.6;
-            pointer-events: none; /* Menonaktifkan efek hover */
+            pointer-events: none;
         }
         .coming-soon-ribbon {
             position: absolute;
@@ -118,10 +119,10 @@
             right: -45px;
             transform: rotate(45deg);
             padding: 4px 40px;
-            background-color: #A47E65; /* Warna aksen brand */
-            color: #111; /* Teks gelap agar kontras di atas pita */
+            background-color: #A47E65;
+            color: #111;
             font-weight: 700;
-            font-size: 1.5rem; /* Ukuran disesuaikan dengan font Amatic */
+            font-size: 1.5rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             text-align: center;
         }
@@ -134,7 +135,8 @@
     <div class="main-content-area">
         <header class="flex justify-between items-center">
             <a href="#home">
-                <img src="images/logo3.png" alt="MochaFolk Logo" class="h-20 sm:h-24 w-auto">
+                <!-- PERUBAHAN: Ukuran logo diperbarui -->
+                <img src="images/logo3.png" alt="MochaFolk Logo" class="h-24 sm:h-32 w-auto">
             </a>
             <nav class="flex space-x-6 sm:space-x-8 text-2xl font-amatic">
                 <a href="#home" class="nav-link active">Home</a>
@@ -164,13 +166,14 @@
             <div class="w-full max-w-4xl text-center">
                 <h2 class="text-6xl sm:text-7xl font-bold mb-12 font-amatic">Our Solutions</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Kartu 1: Online Queue Pager (Aktif) -->
-                    <div class="solution-card p-8 rounded-lg text-left">
+                    
+                    <!-- PERUBAHAN: Link Pager Online diperbarui -->
+                    <a href="https://app.mochafolk.com/login" target="_blank" class="solution-card block p-8 rounded-lg text-left">
                         <i data-lucide="smartphone" class="w-10 h-10 brand-accent-text mb-4"></i>
                         <h3 class="font-bold text-4xl text-gray-200 mb-2 font-amatic">Online Queue Pager</h3>
                         <p class="text-base text-gray-400 font-normal font-body tracking-normal">For the mindful customer. Order your coffee and get instant notifications when it's ready. No lines, no waiting, just a seamless experience.</p>
-                    </div>
-                    <!-- PERUBAHAN: Kartu 2: Roastery Inventory System (Coming Soon) -->
+                    </a>
+                    
                     <div class="solution-card inactive p-8 rounded-lg text-left relative overflow-hidden">
                         <div class="coming-soon-ribbon font-amatic">Coming Soon</div>
                         <i data-lucide="archive" class="w-10 h-10 brand-accent-text mb-4"></i>
@@ -186,9 +189,10 @@
                 <h2 class="text-6xl sm:text-7xl font-bold mb-4 font-amatic">Get In Touch</h2>
                 <p class="text-xl text-gray-400 mb-12 font-body tracking-normal">We'd love to hear from you. If you need solutions and ideas for your coffee shop, don't hesitate to contact us.</p>
                 <div class="space-y-4">
-                    <a href="https://www.instagram.com/mochaliffian/" target="_blank" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
+                    <!-- PERUBAHAN: Link dan username Instagram diperbarui -->
+                    <a href="https://www.instagram.com/mochafolk/" target="_blank" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
                         <i data-lucide="instagram" class="w-7 h-7 brand-accent-text"></i>
-                        <span class="text-3xl font-bold font-amatic">@mochaliffian</span>
+                        <span class="text-3xl font-bold font-amatic">@mochafolk</span>
                     </a>
                     <a href="https://wa.me/6282139025322" target="_blank" class="contact-link p-4 rounded-lg flex items-center space-x-4 w-full">
                         <i data-lucide="message-circle" class="w-7 h-7 brand-accent-text"></i>
